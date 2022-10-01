@@ -32,6 +32,7 @@ class SongTrackTile extends StatelessWidget {
 
   IconButton _getUnFavoriteIcon(BuildContext context) {
     return IconButton(
+      tooltip: 'Eliminar de favoritos',
       onPressed: () {
         showDialog<bool>(
           context: context,

@@ -20,6 +20,7 @@ class TrackResultPage extends StatelessWidget {
         title: const Text('Resultado de la búsqueda'),
         actions: [
           IconButton(
+            tooltip: 'Añadir a favoritos',
             icon: const Icon(Icons.favorite),
             onPressed: () {
               _showAddToFavoritesDialog(context);
@@ -39,10 +40,11 @@ class TrackResultPage extends StatelessWidget {
   Expanded _getSongLinkIconButtonsFooter() {
     return Expanded(
       child: Align(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            const SizedBox(height: 8),
             const Text(
               'Abrir con:',
               style: TextStyle(
@@ -58,17 +60,20 @@ class TrackResultPage extends StatelessWidget {
                     icon: FontAwesomeIcons.spotify,
                     color: Colors.white,
                     url: track.spotifyUrl ?? '',
+                    tooltip: 'Ver en Spotify',
                   ),
                 IconUrlLauncher(
                   icon: FontAwesomeIcons.podcast,
                   color: Colors.white,
                   url: track.listenUrl ?? '',
+                  tooltip: 'Ver en Lis.tn',
                 ),
                 if (track.appleUrl != null)
                   IconUrlLauncher(
                     icon: FontAwesomeIcons.apple,
                     color: Colors.white,
                     url: track.appleUrl ?? '',
+                    tooltip: 'Ver en Apple Music',
                   ),
               ],
             )

@@ -74,7 +74,12 @@ class HomePage extends StatelessWidget {
       },
       builder: (context, state) {
         bool isRecording = state is RecorderRecordingState;
-        return _getAvatarGlow(context, isRecording);
+        return Tooltip(
+          message: 'Toca para grabar el audio',
+          margin: const EdgeInsets.only(top: 66),
+          padding: const EdgeInsets.all(8),
+          child: _getAvatarGlow(context, isRecording),
+        );
       },
     );
   }
@@ -118,6 +123,7 @@ class HomePage extends StatelessWidget {
             width: 70,
             child: IconButton(
               padding: const EdgeInsets.all(0),
+              tooltip: 'Ver favoritos',
               icon: const Icon(
                 Icons.favorite,
                 size: 32,
