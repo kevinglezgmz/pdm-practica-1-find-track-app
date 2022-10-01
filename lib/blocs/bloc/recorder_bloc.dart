@@ -37,9 +37,6 @@ class RecorderBloc extends Bloc<RecorderEvent, RecorderState> {
       emit(RecorderRecordingSuccessState(pathToRecording: recordingPath));
     } on _StateException catch (errorState) {
       emit(errorState.nextState);
-    } finally {
-      await record.dispose();
-      record = Record();
     }
   }
 

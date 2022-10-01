@@ -134,7 +134,7 @@ class SongTrackTile extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: Image.network(
-            track.imageUrl!,
+            track.imageUrl ?? 'https://i.ibb.co/xMhhc9z/placeholder.png',
             fit: BoxFit.fill,
             loadingBuilder: ((context, child, loadingProgress) {
               if (loadingProgress == null) {

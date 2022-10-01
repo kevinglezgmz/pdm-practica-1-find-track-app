@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
             child: Center(
               child: Container(
                 margin: const EdgeInsets.only(top: 140),
-                child: _getTitleBlocConsumer(),
+                child: _getTitleBlocConsumer(context),
               ),
             ),
           ),
@@ -33,11 +33,12 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  BlocConsumer<RecorderBloc, RecorderState> _getTitleBlocConsumer() {
+  BlocConsumer<RecorderBloc, RecorderState> _getTitleBlocConsumer(
+      BuildContext parentContext) {
     return BlocConsumer<RecorderBloc, RecorderState>(
       listener: (context, state) {
         if (state is RecorderRecordingState) {
-          _maybeShowSnackBar(context, state.message);
+          _maybeShowSnackBar(parentContext, state.message);
         }
       },
       builder: (context, state) {
@@ -150,10 +151,9 @@ class HomePage extends StatelessWidget {
   }
 
   void _maybeShowSnackBar(BuildContext context, String? text) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (text != null) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(text)));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
     }
   }
 
